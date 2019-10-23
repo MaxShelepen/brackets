@@ -1,17 +1,23 @@
 module.exports = function check(str, bracketsConfig) {
  
-  let bracket = /\(\)|\{\}|\[\]|\|\||[1][2]|[3][4]|[5][6]|[7][7]|[8][8]/;
-  let cl;
-  const tr = function (str) {
-      const newbrakets = str.replace(bracket, "");
-      if ((newbrakets.length !== 0) && (bracket.test(str))) {
-          tr(newbrakets);
-      } else if (newbrakets.length == 0) {
-          return (cl = true);
-      } else {
-          return (cl = false);
+    let i = 0;
+    while(i < str.length){
+      //цикл по конфигуfo
+      for(massive of bracketsConfig){
+      if(str[i] === massive[0] && str[i+1] === massive[1]){
+        str = str.replace(massive[0] + massive[1], ''); 
+         i = -1;
+    continue
       }
+      }
+      i++;
+      
+    }
+    
+    if (str.length === 0){
+        return true;}
+      else {
+        return false;}
   };
-  tr(str);
-  return cl;
-}
+
+
